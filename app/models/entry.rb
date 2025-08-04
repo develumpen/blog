@@ -7,7 +7,7 @@ class Entry < ApplicationRecord
   private
 
   def set_body_html
-    self.body_html = body_markdown
+    self.body_html = Markdown.new(body_markdown).to_html
   end
 
   def set_slug

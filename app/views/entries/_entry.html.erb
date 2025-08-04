@@ -3,5 +3,5 @@
   <div>
     <small><%= l entry.published_at, format: :long %></small>
   </div>
-  <%== entry.body_html %>
+  <%= sanitize entry.body_html %>
 </div>
