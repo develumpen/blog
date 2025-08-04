@@ -9,6 +9,9 @@ Rails.application.routes.draw do
   # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
 
+  resources :entries, only: %i[ index new edit create update destroy ]
+  get "/:slug", to: "entries#show", as: :entry_slug
+
   # Defines the root path route ("/")
-  # root "posts#index"
+  root "entries#index"
 end
