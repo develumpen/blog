@@ -20,11 +20,11 @@ class EntriesControllerTest < ActionDispatch::IntegrationTest
       post entries_url, params: { entry: { body_markdown: @entry.body_markdown, draft: @entry.draft, published_at: @entry.published_at, title: @entry.title } }
     end
 
-    assert_redirected_to entry_url(Entry.last)
+    assert_redirected_to entry_slug_url(Entry.last.slug)
   end
 
   test "should show entry" do
-    get entry_url(@entry)
+    get entry_slug_url(@entry.slug)
     assert_response :success
   end
 
@@ -35,7 +35,7 @@ class EntriesControllerTest < ActionDispatch::IntegrationTest
 
   test "should update entry" do
     patch entry_url(@entry), params: { entry: { body_html: @entry.body_html, body_markdown: @entry.body_markdown, draft: @entry.draft, published_at: @entry.published_at, title: @entry.title } }
-    assert_redirected_to entry_url(@entry)
+    assert_redirected_to entry_slug_url(@entry.slug)
   end
 
   test "should destroy entry" do

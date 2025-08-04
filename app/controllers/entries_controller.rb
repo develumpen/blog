@@ -1,5 +1,6 @@
 class EntriesController < ApplicationController
-  before_action :set_entry, only: %i[ show edit update destroy ]
+  before_action :set_entry_from_id, only: %i[ edit update destroy ]
+  before_action :set_entry_from_slug, only: %i[ show ]
 
   def index
     @entries = Entry.order(published_at: :desc)
@@ -19,7 +20,7 @@ class EntriesController < ApplicationController
     @entry = Entry.new(entry_params)
 
     if @entry.save
-      redirect_to @entry, notice: "Entry was successfully created."
+      redirect_to entry_slug_path(@entry.slug), notice: "Entry was successfully created."
     else
       render :new, status: :unprocessable_entity
     end
@@ -27,7 +28,7 @@ class EntriesController < ApplicationController
 
   def update
     if @entry.update(entry_params)
-      redirect_to @entry, notice: "Entry was successfully updated.", status: :see_other
+      redirect_to entry_slug_path(@entry.slug), notice: "Entry was successfully updated.", status: :see_other
     else
       render :edit, status: :unprocessable_entity
     end
@@ -39,8 +40,12 @@ class EntriesController < ApplicationController
   end
 
   private
-    def set_entry
+    def set_entry_from_id
       @entry = Entry.find(params.expect(:id))
+    end
+
+    def set_entry_from_slug
+      @entry = Entry.find_by_slug(params[:slug])
     end
 
     def entry_params

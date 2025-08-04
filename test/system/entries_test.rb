@@ -24,7 +24,7 @@ class EntriesTest < ApplicationSystemTestCase
   end
 
   test "should update Entry" do
-    visit entry_url(@entry)
+    visit entry_slug_url(@entry.slug)
     click_on "Edit this entry", match: :first
 
     fill_in "Body markdown", with: @entry.body_markdown
@@ -38,7 +38,7 @@ class EntriesTest < ApplicationSystemTestCase
   end
 
   test "should destroy Entry" do
-    visit entry_url(@entry)
+    visit entry_slug_url(@entry.slug)
     click_on "Destroy this entry", match: :first
 
     assert_text "Entry was successfully destroyed"
