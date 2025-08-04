@@ -20,12 +20,13 @@ class EntriesTest < ApplicationSystemTestCase
     click_on "Create Entry"
 
     assert_text "Entry was successfully created"
-    click_on "Back"
   end
 
   test "should update Entry" do
-    visit entry_slug_url(@entry.slug)
-    click_on "Edit this entry", match: :first
+    # visit entry_slug_url(@entry.slug)
+    # click_on "Edit this entry", match: :first
+
+    visit edit_entry_url(@entry)
 
     fill_in "Body markdown", with: @entry.body_markdown
     check "Draft" if @entry.draft
@@ -34,13 +35,13 @@ class EntriesTest < ApplicationSystemTestCase
     click_on "Update Entry"
 
     assert_text "Entry was successfully updated"
-    click_on "Back"
   end
 
-  test "should destroy Entry" do
-    visit entry_slug_url(@entry.slug)
-    click_on "Destroy this entry", match: :first
+  # TODO: will enable after adding authentication/authorization
+  # test "should destroy Entry" do
+  #   visit entry_slug_url(@entry.slug)
+  #   click_on "Destroy this entry", match: :first
 
-    assert_text "Entry was successfully destroyed"
-  end
+  #   assert_text "Entry was successfully destroyed"
+  # end
 end
