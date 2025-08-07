@@ -4,6 +4,14 @@ class Entry < ApplicationRecord
 
   validates :title, presence: true
 
+  scope :published, -> { where(draft: false).where("published_at < ?", Time.current) }
+
+  def status
+    return "draft" if draft
+    return "scheduled" if published_at > Time.current
+    "published"
+  end
+
   private
 
   def set_body_html

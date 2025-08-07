@@ -10,38 +10,8 @@ class EntriesTest < ApplicationSystemTestCase
     assert_selector "h2", count: Entry.count
   end
 
-  test "should create entry" do
-    visit new_entry_url
-
-    fill_in "Body markdown", with: @entry.body_markdown
-    check "Draft" if @entry.draft
-    fill_in "Published at", with: @entry.published_at
-    fill_in "Title", with: @entry.title
-    click_on "Create Entry"
-
-    assert_text "Entry was successfully created"
+  test "visiting an entry" do
+    visit entry_slug_url(@entry.slug)
+    assert_selector "h2", count: 1, text: @entry.title
   end
-
-  test "should update Entry" do
-    # visit entry_slug_url(@entry.slug)
-    # click_on "Edit this entry", match: :first
-
-    visit edit_entry_url(@entry)
-
-    fill_in "Body markdown", with: @entry.body_markdown
-    check "Draft" if @entry.draft
-    fill_in "Published at", with: @entry.published_at.to_s
-    fill_in "Title", with: @entry.title
-    click_on "Update Entry"
-
-    assert_text "Entry was successfully updated"
-  end
-
-  # TODO: will enable after adding authentication/authorization
-  # test "should destroy Entry" do
-  #   visit entry_slug_url(@entry.slug)
-  #   click_on "Destroy this entry", match: :first
-
-  #   assert_text "Entry was successfully destroyed"
-  # end
 end

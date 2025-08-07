@@ -1,0 +1,28 @@
+<% content_for :title, "Admin: Entries" %>
+
+<p><%= link_to "Add entry", new_admin_entry_path %></p>
+
+<table id="entries" class="table">
+  <thead>
+    <tr>
+      <th>Published at</th>
+      <th>Title</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @entries.each do |entry| %>
+      <tr>
+        <td>
+          <% if entry.published_at %>
+            <%= l entry.published_at, format: :short %>
+          <% else %>
+            -
+          <% end %>
+        </td>
+        <td><%= link_to entry.title, edit_admin_entry_path(entry) %></td>
+        <td><%= entry.status %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

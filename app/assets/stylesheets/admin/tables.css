@@ -1,0 +1,17 @@
+.table {
+  border-collapse: collapse;
+  border: 1px solid black;
+
+  thead th {
+    text-align: left;
+    border-bottom: 1px solid black;
+  }
+
+  th, td {
+    padding: .3rem;
+  }
+
+  tbody tr:hover {
+    background-color: beige;
+  }
+}
