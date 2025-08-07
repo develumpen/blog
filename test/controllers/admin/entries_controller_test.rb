@@ -20,7 +20,7 @@ class Admin::EntriesControllerTest < ActionDispatch::IntegrationTest
       post admin_entries_url, params: { entry: { body_markdown: @entry.body_markdown, draft: @entry.draft, published_at: @entry.published_at, title: @entry.title } }
     end
 
-    assert_redirected_to admin_entry_url(Entry.last)
+    assert_redirected_to edit_admin_entry_url(Entry.last)
   end
 
   test "should get edit" do
