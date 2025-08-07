@@ -9,7 +9,11 @@ Rails.application.routes.draw do
   # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
 
-  resources :entries, only: %i[ index new edit create update destroy ]
+  namespace :admin do
+    resources :entries, only: %i[ index new edit create update destroy ]
+  end
+
+  resources :entries, only: %i[ index ]
   get "/:slug", to: "entries#show", as: :entry_slug
 
   # Defines the root path route ("/")
