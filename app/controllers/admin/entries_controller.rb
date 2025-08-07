@@ -20,7 +20,7 @@ module Admin
       @entry = Entry.new(entry_params)
 
       if @entry.save
-        redirect_to admin_entry_path(@entry), notice: "Entry was successfully created."
+        redirect_to edit_admin_entry_path(@entry), notice: "Entry was successfully created."
       else
         render :new, status: :unprocessable_entity
       end
