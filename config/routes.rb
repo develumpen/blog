@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     resources :entries, only: %i[ index new edit create update destroy ]
   end
 
+  get "/feed", to: "feeds#show", defaults: { format: "atom" }
   resources :entries, only: %i[ index ]
   get "/:slug", to: "entries#show", as: :entry_slug
   resource :session
