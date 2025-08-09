@@ -4,7 +4,11 @@
 
 <%= render "form", entry: @entry %>
 
-<br>
+<br />
+
+<%= button_to "Destroy Entry", admin_entry_path(@entry), method: :delete, data: { turbo_confirm: "Are you sure?" } %>
+
+<br />
 
 <div>
   <%= link_to "Show this entry", entry_slug_path(@entry.slug) %> |
