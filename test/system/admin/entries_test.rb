@@ -6,11 +6,15 @@ class Admin::EntriesTest < ApplicationSystemTestCase
   end
 
   test "visiting the index" do
+    sign_in_as users(:one)
+
     visit admin_entries_url
     assert_selector "tbody tr", count: Entry.count
   end
 
   test "should create entry" do
+    sign_in_as users(:one)
+
     visit new_admin_entry_url
 
     fill_in "Body markdown", with: @entry.body_markdown
@@ -23,6 +27,8 @@ class Admin::EntriesTest < ApplicationSystemTestCase
   end
 
   test "should update Entry" do
+    sign_in_as users(:one)
+
     visit edit_admin_entry_url(@entry)
 
     fill_in "Body markdown", with: @entry.body_markdown
@@ -34,11 +40,14 @@ class Admin::EntriesTest < ApplicationSystemTestCase
     assert_text "Entry was successfully updated"
   end
 
-  # TODO: will enable after adding authentication/authorization
-  # test "should destroy Entry" do
-  #   visit entry_slug_url(@entry.slug)
-  #   click_on "Destroy this entry", match: :first
+  test "should destroy Entry" do
+    sign_in_as users(:one)
 
-  #   assert_text "Entry was successfully destroyed"
-  # end
+    visit edit_admin_entry_url(@entry)
+    accept_confirm do
+      click_on "Destroy Entry", match: :first
+    end
+
+    assert_text "Entry was successfully destroyed"
+  end
 end

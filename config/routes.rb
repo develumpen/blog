@@ -16,6 +16,7 @@ Rails.application.routes.draw do
 
   resources :entries, only: %i[ index ]
   get "/:slug", to: "entries#show", as: :entry_slug
+  resource :session
 
   # Defines the root path route ("/")
   root "entries#index"
