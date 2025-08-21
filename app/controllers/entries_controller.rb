@@ -6,6 +6,8 @@ class EntriesController < ApplicationController
   end
 
   def show
+    @new_comment = @entry.comments.new
+    @comments = @entry.comments.persisted
   end
 
   private

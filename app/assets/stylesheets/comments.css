@@ -1,0 +1,7 @@
+.comment {
+  margin-bottom: 2rem;
+
+  .comment-author {
+    margin-bottom: .5rem;
+  }
+}

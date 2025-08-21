@@ -1,7 +1,13 @@
 <div id="<%= dom_id entry %>">
   <h2><%= link_to_unless_current entry.title, entry_slug_path(entry.slug) %></h2>
   <div>
-    <small><%= l entry.published_at, format: :long %></small>
+    <small>
+      <%= l entry.published_at, format: :long %>
+      <% if entry.comments.persisted.any? %>
+        —
+        <%= pluralize(entry.comments.persisted.count, "comentario", plural: "comentarios") %>
+      <% end %>
+    </small>
   </div>
   <%= sanitize entry.body_html %>
 </div>

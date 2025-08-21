@@ -2,7 +2,7 @@
 
 one:
   title: MyString
-  slug: MyString
+  slug: one
   published_at: 2025-08-04 17:38:54
   draft: false
   body_markdown: MyText
@@ -10,7 +10,7 @@ one:
 
 two:
   title: MyString
-  slug: MyString
+  slug: two
   published_at: 2025-08-04 17:38:54
   draft: false
   body_markdown: MyText
