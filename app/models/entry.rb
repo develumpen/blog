@@ -1,4 +1,6 @@
 class Entry < ApplicationRecord
+  has_many :comments, dependent: :destroy
+
   before_validation :set_slug
   before_validation :set_body_html
 

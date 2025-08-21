@@ -1,0 +1,25 @@
+<%= form_with(model: [@entry, @new_comment]) do |form| %>
+  <%= render "common/form_errors", model: @new_comment %>
+
+  <% unless authenticated? %>
+    <div>
+      <%= form.label :name %><br />
+      <%= form.text_field :name %>
+    </div>
+    <div>
+      <%= form.label :email %><br />
+      <%= form.text_field :email %>
+    </div>
+    <div>
+      <%= form.label :url %><br />
+      <%= form.text_field :url %>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :comment %><br />
+    <%= form.text_area :comment %>
+  </div>
+
+  <%= form.submit %>
+<% end %>
