@@ -31,4 +31,13 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
 
     assert_redirected_to entry_slug_url(@entry.slug)
   end
+
+  test "signed in user can destroy a comment" do
+    @user = users(:one)
+    sign_in_as @user
+
+    assert_difference("Comment.count", -1) do
+      delete comment_url(@entry.comments.first)
+    end
+  end
 end
