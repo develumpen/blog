@@ -13,6 +13,11 @@
     <small>
       <%= link_to l(comment.created_at, format: :long), entry_slug_path(comment.entry.slug, anchor: dom_id(comment)) %>
     </small>
+
+    <% if authenticated? %>
+      —
+      <small><%= button_to "Eliminar", comment_path(comment), method: :delete, form_class: "inline-block", data: { turbo_confirm: "¿Seguro que quieres eliminar este comentario?" } %></small>
+    <% end %>
   </div>
 
   <div class="comment-content">
