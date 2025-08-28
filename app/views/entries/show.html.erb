@@ -1,1 +1,19 @@
-<%= render @entry %>
+<section>
+  <%= render @entry %>
+</section>
+
+<section>
+  <h2 class="title">Comentarios</h2>
+
+  <% unless @comments.any? %>
+    <p>Nadie ha comentado nada por ahora.</p>
+  <% end %>
+
+  <%= render @comments %>
+</section>
+
+<section>
+  <h2 class="title">Deja un comentario</h2>
+
+  <%= render "comments/form" %>
+</section>

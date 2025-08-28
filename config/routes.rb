@@ -15,7 +15,9 @@ Rails.application.routes.draw do
   end
 
   get "/feed", to: "feeds#show", defaults: { format: "atom" }
-  resources :entries, only: %i[ index ]
+  resources :entries, only: %i[ index ] do
+    resources :comments, only: %i[ create destroy ], shallow: true
+  end
   get "/:slug", to: "entries#show", as: :entry_slug
   resource :session
 
