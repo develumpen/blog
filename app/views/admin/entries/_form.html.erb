@@ -32,6 +32,11 @@
   </div>
 
   <div class="input-group">
+    <%= form.label :tags, style: "display: block" %>
+    <%= form.collection_checkboxes(:tag_ids, Tag.all, :id, :name) %>
+  </div>
+
+  <div class="input-group">
     <%= form.label :body_markdown, style: "display: block" %>
     <%= form.textarea :body_markdown, rows: 10, class: "input" %>
   </div>
