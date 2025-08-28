@@ -4,21 +4,21 @@
   <% unless authenticated? %>
     <div>
       <%= form.label :name %><br />
-      <%= form.text_field :name %>
+      <%= form.text_field :name, class: "input" %>
     </div>
     <div>
       <%= form.label :email %><br />
-      <%= form.text_field :email %>
+      <%= form.text_field :email, class: "input" %>
     </div>
     <div>
       <%= form.label :url %><br />
-      <%= form.text_field :url %>
+      <%= form.text_field :url, class: "input" %>
     </div>
   <% end %>
 
   <div>
     <%= form.label :comment %><br />
-    <%= form.text_area :comment %>
+    <%= form.text_area :comment, rows: 4, class: "input" %>
   </div>
 
   <%= form.submit %>
