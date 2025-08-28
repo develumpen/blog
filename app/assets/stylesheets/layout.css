@@ -1,3 +1,14 @@
+body {
+  margin: 0;
+}
+
+.container {
+  margin: 1rem auto;
+  box-sizing: border-box;
+  max-width: 992px;
+  width: calc(100% - 1rem);
+}
+
 section {
   margin-bottom: 3rem;
 }
