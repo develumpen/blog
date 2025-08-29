@@ -9,7 +9,7 @@
       <% end %>
       <% if entry.tags.any? %>
         —
-        <%= safe_join(entry.tags.map { |t| tag.span(t.name, class: "tag") }, ", ") %>
+        <%= safe_join(entry.tags.map { |t| link_to(t.name, entries_path(tags: [t.name]), class: "tag") }, ", ") %>
       <% end %>
     </small>
   </div>

@@ -10,6 +10,19 @@ class Entry < ApplicationRecord
 
   scope :published, -> { where(draft: false).where("published_at < ?", Time.current) }
 
+  scope :filter_by_tags, ->(tags) {
+    tag_names = Array.wrap(tags)
+
+    return all unless tag_names.any?
+
+    joins(:tags)
+      .where(tags: { name: tag_names })
+      .group(:id)
+      .having(
+        Tag.arel_table[:id].count(true).eq(tag_names.size)
+      )
+  }
+
   def status
     return "draft" if draft
     return "scheduled" if published_at > Time.current
