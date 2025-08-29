@@ -1,0 +1,13 @@
+<% if authenticated? && !request.path.starts_with?("/admin") %>
+  <div>
+    <%= link_to "Admin", admin_path %>
+  </div>
+<% end %>
+
+<% if request.path.starts_with?("/admin") %>
+  <div>
+    <%= link_to "Entradas", admin_entries_path %>
+    <%= link_to "Etiquetas", admin_tags_path %>
+  </div>
+<% end %>
+
