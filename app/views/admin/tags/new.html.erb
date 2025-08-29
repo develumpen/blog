@@ -1,0 +1,12 @@
+<% content_for :title, "Nueva etiqueta" %>
+
+<h1>Nueva etiqueta</h1>
+
+<%= render "form", tag: @tag %>
+
+<br>
+
+<div>
+  <%= link_to "Volver a las etiquetas", admin_tags_path %>
+</div>
+
