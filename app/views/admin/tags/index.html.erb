@@ -1,0 +1,20 @@
+<% content_for :title, "Admin: Tags" %>
+
+<p><%= link_to "Añadir etiqueta", new_admin_tag_path %></p>
+
+<table id="tags" class="table">
+  <thead>
+    <tr>
+      <td>Name</td>
+      <td></td>
+    </tr>
+  </thead>
+  <tbody>
+    <% @tags.each do |tag| %>
+      <tr>
+        <td><%= link_to tag.name, edit_admin_tag_path(tag) %></td>
+        <td><%= button_to "Eliminar", admin_tag_path(tag), method: :delete, data: { turbo_confirm: "¿Seguro que quieres eliminar esta etiqueta (#{tag.name})?" } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -49,7 +49,7 @@ module Admin
       end
 
       def entry_params
-        params.expect(entry: [ :title, :slug, :published_at, :draft, :body_markdown ])
+        params.expect(entry: [ :title, :slug, :published_at, :draft, :body_markdown, tag_ids: [] ])
       end
   end
 end

@@ -2,7 +2,7 @@ class EntriesController < ApplicationController
   before_action :set_entry, only: %i[ show ]
 
   def index
-    @entries = Entry.published.order(published_at: :desc)
+    @entries = Entry.published.filter_by_tags(params[:tags]).order(published_at: :desc)
   end
 
   def show

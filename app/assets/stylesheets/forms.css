@@ -1,4 +1,14 @@
+.input-group {
+  margin-bottom: .5rem;
+
+  label {
+    font-size: .9rem;
+    margin-bottom: .1rem;
+  }
+}
+
 .input {
+  box-sizing: border-box;
   width: 100%;
 }
 

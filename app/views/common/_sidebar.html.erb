@@ -1,0 +1,13 @@
+<div>
+  <h3>Etiquetas</h3>
+
+  <%= form_with(url: entries_path, method: :get) do |form| %>
+    <div class="tags-filter">
+      <%= form.collection_checkboxes(:tags, Tag.all, :name, :name, include_hidden: false, checked: params[:tags]) do |b| %>
+        <%= b.label { b.checkbox + b.text } %>
+      <% end %>
+    </div>
+    <%= form.submit "Filtrar", name: nil %>
+  <% end %>
+</div>
+

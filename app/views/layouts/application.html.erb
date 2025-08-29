@@ -26,12 +26,23 @@
 
   <body>
     <div class="container">
-      <h1><%= link_to_unless_current "develumpen.com", root_path %></h1>
+      <header class="page-header">
+        <h1><%= link_to_unless_current "develumpen.com", root_path %></h1>
+        <%= render "common/menu" %>
+      </header>
 
-      <%= tag.div(flash[:alert], style: "color:red") if flash[:alert] %>
-      <%= tag.div(flash[:notice], style: "color:green") if flash[:notice] %>
+      <div class="content">
+        <%= tag.div(flash[:alert], style: "color:red") if flash[:alert] %>
+        <%= tag.div(flash[:notice], style: "color:green") if flash[:notice] %>
 
-      <%= yield %>
+        <%= yield %>
+      </div>
+
+      <% if content_for?(:sidebar) %>
+        <div class="sidebar">
+          <%= content_for(:sidebar) %>
+        </div>
+      <% end %>
     </div>
   </body>
 </html>

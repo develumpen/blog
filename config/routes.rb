@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   get "admin", to: redirect("admin/entries")
   namespace :admin do
     resources :entries, only: %i[ index new edit create update destroy ]
+    resources :tags
   end
 
   get "/feed", to: "feeds#show", defaults: { format: "atom" }

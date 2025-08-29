@@ -7,6 +7,10 @@
         —
         <%= pluralize(entry.comments.persisted.count, "comentario", plural: "comentarios") %>
       <% end %>
+      <% if entry.tags.any? %>
+        —
+        <%= safe_join(entry.tags.map { |t| link_to(t.name, entries_path(tags: [t.name]), class: "tag") }, ", ") %>
+      <% end %>
     </small>
   </div>
   <%= sanitize entry.body_html %>
