@@ -1,0 +1,18 @@
+.tags-filter {
+  display: inline-block;
+
+  @media (min-width: 992px) {
+    display: block;
+  }
+
+  label {
+    @media (min-width: 992px) {
+      display: block;
+      margin-bottom: .1rem;
+    }
+
+    &:last-of-type {
+      margin-bottom: .5rem;
+    }
+  }
+}

@@ -7,6 +7,29 @@ body {
   box-sizing: border-box;
   max-width: 992px;
   width: calc(100% - 1rem);
+
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  @media (min-width: 992px) {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+}
+
+.page-header {
+  flex-basis: 100%;
+}
+
+.content {
+  flex: 1;
+}
+
+.sidebar {
+  @media (min-width: 992px) {
+    width: 200px;
+  }
 }
 
 section {
