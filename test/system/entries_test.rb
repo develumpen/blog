@@ -17,6 +17,6 @@ class EntriesTest < ApplicationSystemTestCase
     assert_selector "h2", count: 1, text: @entry.title
 
     # @entry has 2 tags (check fixtures):
-    assert_selector "span.tag", count: 2
+    assert_selector "a.tag", count: 2
   end
 end
