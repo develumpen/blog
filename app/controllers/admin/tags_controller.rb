@@ -1,4 +1,4 @@
-class Admin::TagsController < ApplicationController
+class Admin::TagsController < AdminController
   before_action :set_tag, only: %i[ edit update destroy ]
 
   def index
