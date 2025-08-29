@@ -32,7 +32,9 @@ class Entry < ApplicationRecord
   private
 
   def set_body_html
-    self.body_html = Markdown.new(body_markdown).to_html
+    extensions = %i[ fenced_code_blocks]
+
+    self.body_html = Markdown.new(body_markdown, *extensions).to_html
   end
 
   def set_slug
