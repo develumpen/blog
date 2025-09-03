@@ -5,5 +5,11 @@
 pre {
   box-sizing: border-box;
   padding: .5rem;
-  background-color: #eee
+  background-color: #eee;
+
+  code {
+    display: block;
+    overflow-x: auto;
+  }
 }
+
