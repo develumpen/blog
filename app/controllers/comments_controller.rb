@@ -1,6 +1,13 @@
 class CommentsController < ApplicationController
   before_action :set_entry, only: %i[ create ]
+  before_action :capture_spam, only: %i[ create ]
   before_action :set_comment, only: %i[ destroy ]
+
+  class SpamComment < StandardError; end
+
+  rescue_from SpamComment do |error|
+    redirect_to entry_slug_path(@entry.slug)
+  end
 
   def create
     @new_comment = @entry.comments.new(comment_params)
@@ -33,5 +40,11 @@ class CommentsController < ApplicationController
       params
         .expect(comment: [ :name, :email, :url, :comment ])
         .with_defaults({ user: Current.user })
+    end
+
+    def capture_spam
+      if params.dig(:comment, :last_name).present?
+        raise SpamComment
+      end
     end
 end
