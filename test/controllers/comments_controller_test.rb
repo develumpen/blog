@@ -40,4 +40,12 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
       delete comment_url(@entry.comments.first)
     end
   end
+
+  test "do not persist comments if last_name is present" do
+    assert_no_difference("Comment.count") do
+      post entry_comments_url(@entry), params: { comment: { last_name: "spam", comment: "Comment body." } }
+    end
+
+    assert_redirected_to entry_slug_url(@entry.slug)
+  end
 end
