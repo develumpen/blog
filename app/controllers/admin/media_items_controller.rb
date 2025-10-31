@@ -34,4 +34,14 @@ class Admin::MediaItemsController < ApplicationController
     def set_media_item
       @media_item = MediaItem.find(params[:id])
     end
+
+    def hide_delete?
+      params[:hide_delete].present?
+    end
+    helper_method :hide_delete?
+
+    def media_item_target
+      params[:target]
+    end
+    helper_method :media_item_target
 end
