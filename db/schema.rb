@@ -63,6 +63,11 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_30_231646) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "media_items", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "sessions", force: :cascade do |t|
     t.integer "user_id", null: false
     t.string "ip_address"
