@@ -5,15 +5,17 @@
   <%= form.submit %>
 <% end %>
 
-<% @media_items.each do |item| %>
-  <div class="media-item__thumb">
-    <% if item.media.representable? %>
-      <%= image_tag item.media.representation(resize_to_limit: [150, 150]) %>
-    <% else %>
-      <p>This image cannot be represented.</p>
-    <% end %>
+<div class="media-items">
+  <% @media_items.each do |item| %>
+    <div class="media-item__thumb">
+      <% if item.media.representable? %>
+        <%= image_tag item.media.representation(resize_to_limit: [150, 150]) %>
+      <% else %>
+        <p>This image cannot be represented.</p>
+      <% end %>
 
-    <%= button_to "Eliminar", admin_media_item_path(item), method: :delete, data: { turbo_confirm: "Are you sure?" } %>
-  </div>
-<% end %>
+      <%= button_to "Eliminar", admin_media_item_path(item), method: :delete, data: { turbo_confirm: "Are you sure?" } %>
+    </div>
+  <% end %>
+</div>
 
