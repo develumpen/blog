@@ -1,0 +1,19 @@
+<% content_for :title, "Admin: Media" %>
+
+<%= form_with(model: [:admin, @media_item], class: "media-items__form") do |form| %>
+  <%= form.file_field :media %>
+  <%= form.submit %>
+<% end %>
+
+<% @media_items.each do |item| %>
+  <div class="media-item__thumb">
+    <% if item.media.representable? %>
+      <%= image_tag item.media.representation(resize_to_limit: [150, 150]) %>
+    <% else %>
+      <p>This image cannot be represented.</p>
+    <% end %>
+
+    <%= button_to "Eliminar", admin_media_item_path(item), method: :delete, data: { turbo_confirm: "Are you sure?" } %>
+  </div>
+<% end %>
+
