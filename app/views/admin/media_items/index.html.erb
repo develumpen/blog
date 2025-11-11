@@ -1,0 +1,12 @@
+<% content_for :title, "Admin: Media" %>
+
+<%= turbo_frame_tag "media-items-page" do %>
+  <%= render "form" %>
+
+  <div id="media-items" class="media-items">
+    <% @media_items.each do |item| %>
+      <%= render partial: "media_item", locals: { item: } %>
+    <% end %>
+  </div>
+<% end %>
+

@@ -1,0 +1,33 @@
+.media-items__form {
+  margin-bottom: 1rem;
+}
+
+.media-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.media-item__thumb {
+  display: inline-flex;
+  flex-direction: column;
+  padding: .5rem;
+  background: #DDD;
+
+  img {
+    width: 100%;
+    height: 100%;
+  }
+
+  form {
+    margin-top: .5rem;
+
+    button {
+      width: 100%;
+    }
+  }
+}
+
+.media-items__entry-form {
+  margin-bottom: 1rem;
+}

@@ -31,15 +31,46 @@ class Entry < ApplicationRecord
 
   private
 
-  def set_body_html
-    extensions = %i[ fenced_code_blocks]
+    def set_body_html
+      extensions = %i[ fenced_code_blocks]
 
-    self.body_html = Markdown.new(body_markdown, *extensions).to_html
-  end
+      html = Markdown.new(body_markdown, *extensions).to_html
 
-  def set_slug
-    return if self.slug.present?
+      self.body_html = set_img_srcset(html)
+    end
 
-    self.slug = title.parameterize
-  end
+    def set_slug
+      return if self.slug.present?
+
+      self.slug = title.parameterize
+    end
+
+    def set_img_srcset(html)
+      doc = Nokogiri::HTML.fragment(html)
+      doc.css("img").each { |img| replace_image(img, doc) }
+      doc.to_html
+    end
+
+    def replace_image(img, doc)
+      blob = image_blob(img["src"])
+
+      variant = blob.representation(resize_to_limit: [ 800, 800 ])
+      new_image_url = Rails.application.routes.url_helpers.rails_blob_url(variant, only_path: true)
+      new_image = ActionController::Base.helpers.image_tag(new_image_url, alt: img["alt"])
+
+      img.replace(new_image)
+    end
+
+    def image_blob(url)
+      uri = URI.parse(url)
+
+      return unless uri.path.start_with?("/rails/active_storage/representations/redirect")
+
+      segments = uri.path.split("/")
+      signed_id = segments[5..-1][0]
+
+      return unless signed_id
+
+      ActiveStorage::Blob.find_signed(signed_id)
+    end
 end

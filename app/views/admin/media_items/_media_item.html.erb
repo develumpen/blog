@@ -1,0 +1,12 @@
+<div class="media-item__thumb">
+  <% if item.media.representable? %>
+    <%= image_tag item.media.representation(resize_to_fill: [150, 150]),
+          data: { controller: "media-item", action: "click->media-item#embed", "media-item-target-value": media_item_target }%>
+  <% else %>
+    <p>This image cannot be represented.</p>
+  <% end %>
+
+  <% unless hide_delete? %>
+    <%= button_to "Eliminar", admin_media_item_path(item), method: :delete, data: { turbo_confirm: "Are you sure?" } %>
+  <% end %>
+</div>
