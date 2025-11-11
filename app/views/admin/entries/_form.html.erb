@@ -43,7 +43,7 @@
 
   <details class="media-items__entry-form">
     <summary>Media</summary>
-      <%= turbo_frame_tag "media-items", src: admin_media_items_path(hide_delete: true, target: field_id(Entry, :body_markdown)), loading: "lazy" %>
+      <%= turbo_frame_tag "media-items-page", src: admin_media_items_path(hide_delete: true, target: field_id(Entry, :body_markdown)), loading: "lazy" %>
   </details>
 
   <div>

@@ -1,25 +1,11 @@
 <% content_for :title, "Admin: Media" %>
 
-<%= turbo_frame_tag "media-items" do %>
-  <%= form_with(model: [:admin, @media_item], class: "media-items__form") do |form| %>
-    <%= form.file_field :media %>
-    <%= form.submit %>
-  <% end %>
+<%= turbo_frame_tag "media-items-page" do %>
+  <%= render "form" %>
 
-  <div class="media-items">
+  <div id="media-items" class="media-items">
     <% @media_items.each do |item| %>
-      <div class="media-item__thumb">
-        <% if item.media.representable? %>
-          <%= image_tag item.media.representation(resize_to_limit: [150, 150]),
-                data: { controller: "media-item", action: "click->media-item#embed", "media-item-target-value": media_item_target }%>
-        <% else %>
-          <p>This image cannot be represented.</p>
-        <% end %>
-
-        <% unless hide_delete? %>
-          <%= button_to "Eliminar", admin_media_item_path(item), method: :delete, data: { turbo_confirm: "Are you sure?" } %>
-        <% end %>
-      </div>
+      <%= render partial: "media_item", locals: { item: } %>
     <% end %>
   </div>
 <% end %>

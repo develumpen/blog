@@ -1,0 +1,7 @@
+<%= turbo_stream.replace "media-items-form" do %>
+  <%= render partial: "form" %>
+<% end %>
+
+<%= turbo_stream.prepend "media-items" do %>
+  <%= render partial: "media_item", locals: { item: @media_item, media_item_target: media_item_target } %>
+<% end %>

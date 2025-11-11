@@ -2,7 +2,7 @@ class Admin::MediaItemsController < ApplicationController
   before_action :set_media_item, only: %i[ destroy ]
 
   def index
-    @media_items = MediaItem.all
+    @media_items = MediaItem.order(created_at: :desc)
     @media_item = MediaItem.new
   end
 
@@ -10,7 +10,10 @@ class Admin::MediaItemsController < ApplicationController
     @media_item = MediaItem.new(media_item_params)
 
     if @media_item.save
-      redirect_to admin_media_items_path, notice: "Media item was successfully created."
+      respond_to do |format|
+        format.turbo_stream
+        format.html { redirect_to admin_media_items_path, notice: "Media item was successfully created." }
+      end
     else
       render :new, status: :unprocessable_entity
     end

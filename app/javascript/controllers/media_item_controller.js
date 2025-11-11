@@ -19,6 +19,6 @@ export default class extends Controller {
     
     target.value = target.value.substring(0, startPosition)
       + markdownImage
-      + target.value.substring(endPosition, target.value.lenth);
+      + target.value.substring(endPosition, target.value.length);
   }
 }
