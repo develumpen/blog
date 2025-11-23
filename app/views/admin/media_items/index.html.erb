@@ -1,7 +1,7 @@
 <% content_for :title, "Admin: Media" %>
 
 <%= turbo_frame_tag "media-items-page" do %>
-  <%= render "form" %>
+  <%= render "form", media_item: @media_item %>
 
   <div id="media-items" class="media-items">
     <% @media_items.each do |item| %>
