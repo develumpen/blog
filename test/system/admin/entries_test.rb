@@ -33,7 +33,6 @@ class Admin::EntriesTest < ApplicationSystemTestCase
 
     fill_in "Body markdown", with: @entry.body_markdown
     check "Draft" if @entry.draft
-    fill_in "Published at", with: @entry.published_at.to_s
     fill_in "Title", with: @entry.title
     click_on "Update Entry"
 
