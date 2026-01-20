@@ -6,5 +6,9 @@
   <% @entries.each do |entry| %>
     <%= render entry %>
   <% end %>
+
+  <div class="pagination">
+    <%= pagination(page_count: @page_count) %>
+  </div>
 </div>
 
