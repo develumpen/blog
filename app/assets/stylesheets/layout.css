@@ -41,3 +41,7 @@ section {
   padding-bottom: .5rem;
   border-bottom: 1px solid #ccc;
 }
+
+.text-center {
+  text-align: center;
+}

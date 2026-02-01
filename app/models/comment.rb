@@ -7,4 +7,8 @@ class Comment < ApplicationRecord
   normalizes :email, with: ->(e) { e.strip.downcase }
 
   validates :comment, presence: true
+
+  def author
+    name || user&.username || "anónimo"
+  end
 end

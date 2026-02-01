@@ -8,6 +8,7 @@
       <th>Published at</th>
       <th>Title</th>
       <th>Status</th>
+      <th>Comments</th>
     </tr>
   </thead>
   <tbody>
@@ -22,6 +23,7 @@
         </td>
         <td><%= link_to entry.title, edit_admin_entry_path(entry) %></td>
         <td><%= entry.status %></td>
+        <td class="text-center"><%= entry.comments.count %></td>
       </tr>
     <% end %>
   </tbody>
