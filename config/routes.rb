@@ -11,6 +11,7 @@ Rails.application.routes.draw do
 
   get "admin", to: redirect("admin/entries")
   namespace :admin do
+    resources :comments, only: %i[ index ]
     resources :entries, only: %i[ index new edit create update destroy ]
     resources :media_items, only: %i[ index create destroy ]
     resources :tags
