@@ -18,9 +18,7 @@ class Entry < ApplicationRecord
     joins(:tags)
       .where(tags: { name: tag_names })
       .group(:id)
-      .having(
-        Tag.arel_table[:id].count(true).eq(tag_names.size)
-      )
+      .having("COUNT(DISTINCT tags.id) = ?", tag_names.size)
   }
 
   def status
@@ -30,7 +28,6 @@ class Entry < ApplicationRecord
   end
 
   private
-
     def set_body_html
       extensions = %i[ fenced_code_blocks]
 
