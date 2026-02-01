@@ -30,7 +30,7 @@ class EntriesController < ApplicationController
     end
 
     def paginate(scope)
-      total_count = scope.unscope(:limit, :offset).count
+      total_count = scope.unscope(:limit, :offset, :group).distinct.count(:id)
       total_pages = (total_count.to_f / PER_PAGE).ceil
 
       page = [ current_page, total_pages ].min
