@@ -9,21 +9,7 @@ Rails.application.routes.draw do
   # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
 
-  get "admin", to: redirect("admin/entries")
-  namespace :admin do
-    resources :comments, only: %i[ index ]
-    resources :entries, only: %i[ index new edit create update destroy ]
-    resources :media_items, only: %i[ index create destroy ]
-    resources :tags
-  end
-
-  get "/feed", to: "feeds#show", defaults: { format: "atom" }
-  resources :entries, only: %i[ index ] do
-    resources :comments, only: %i[ create destroy ], shallow: true
-  end
-  get "/:slug", to: "entries#show", as: :entry_slug
   resource :session
 
-  # Defines the root path route ("/")
-  root "entries#index"
+  mount Blog::Engine => "/"
 end

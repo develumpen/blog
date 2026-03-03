@@ -1,0 +1,55 @@
+require "test_helper"
+
+module Blog
+  class CommentsControllerTest < ActionDispatch::IntegrationTest
+    include Engine.routes.url_helpers
+
+    setup do
+      @entry = blog_entries(:one)
+    end
+
+    test "cannot leave an empty comment" do
+      assert_no_difference("Comment.count") do
+        post entry_comments_url(@entry), params: { comment: { name: "Comentor" } }
+      end
+
+      assert_response :unprocessable_content
+    end
+
+    test "signed in user can leave a comment" do
+      @user = users(:one)
+      sign_in_as @user
+
+      assert_difference("Comment.count") do
+        post entry_comments_url(@entry), params: { comment: { comment: "Comment body." } }
+      end
+
+      assert_redirected_to entry_slug_url(@entry.slug)
+    end
+
+    test "a comment can have no name" do
+      assert_difference("Comment.count") do
+        post entry_comments_url(@entry), params: { comment: { comment: "Comment body." } }
+      end
+
+      assert_redirected_to entry_slug_url(@entry.slug)
+    end
+
+    test "signed in user can destroy a comment" do
+      @user = users(:one)
+      sign_in_as @user
+
+      assert_difference("Comment.count", -1) do
+        delete comment_url(@entry.comments.first)
+      end
+    end
+
+    test "do not persist comments if last_name is present" do
+      assert_no_difference("Comment.count") do
+        post entry_comments_url(@entry), params: { comment: { last_name: "spam", comment: "Comment body." } }
+      end
+
+      assert_redirected_to entry_slug_url(@entry.slug)
+    end
+  end
+end

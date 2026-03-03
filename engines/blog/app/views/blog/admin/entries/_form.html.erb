@@ -1,0 +1,52 @@
+<%= form_with(model: [:admin, entry]) do |form| %>
+  <% if entry.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(entry.errors.count, "error") %> prohibited this entry from being saved:</h2>
+
+      <ul>
+        <% entry.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="input-group">
+    <%= form.label :title, style: "display: block" %>
+    <%= form.text_field :title, class: "input" %>
+  </div>
+
+  <div class="input-group">
+    <%= form.label :slug, style: "display: block" %>
+    <%= form.text_field :slug, class: "input" %>
+  </div>
+
+  <div class="input-group">
+    <%= form.label :published_at, style: "display: block" %>
+    <%= form.datetime_field :published_at, class: "input" %>
+  </div>
+
+  <div class="input-group">
+    <%= form.label :draft, style: "display: block" %>
+    <%= form.checkbox :draft %>
+  </div>
+
+  <div class="input-group">
+    <%= form.label :tags, style: "display: block" %>
+    <%= form.collection_checkboxes(:tag_ids, Blog::Tag.all, :id, :name) %>
+  </div>
+
+  <div class="input-group">
+    <%= form.label :body_markdown, style: "display: block" %>
+    <%= form.textarea :body_markdown, rows: 10, class: "input" %>
+  </div>
+
+  <details class="media-items__entry-form">
+    <summary>Media</summary>
+      <%= turbo_frame_tag "media-items-page", src: admin_media_items_path(hide_delete: true, target: form.field_id(:body_markdown)), loading: "lazy" %>
+  </details>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
