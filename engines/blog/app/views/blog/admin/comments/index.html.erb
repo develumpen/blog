@@ -1,0 +1,22 @@
+<%= content_for :title, "Admin: Comments" %>
+
+<table id="comments" class="table">
+  <thead>
+    <tr>
+      <th>Published at</th>
+      <th>Entry</th>
+      <th>Author</th>
+      <th>Comment</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @comments.each do |comment| %>
+      <tr>
+        <td><%= l comment.created_at, format: :short %></td>
+        <td><%= link_to comment.entry.title, entry_slug_path(comment.entry.slug) %></td>
+        <td><%= comment.author %></td>
+        <td><%= link_to(truncate(comment.comment, length: 100), entry_slug_path(comment.entry.slug, anchor: dom_id(comment)))  %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
