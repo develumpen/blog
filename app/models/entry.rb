@@ -52,7 +52,7 @@ class Entry < ApplicationRecord
       blob = image_blob(img["src"])
 
       variant = blob.representation(resize_to_limit: [ 800, 800 ])
-      new_image_url = Rails.application.routes.url_helpers.rails_blob_url(variant, only_path: true)
+      new_image_url = Rails.application.routes.url_helpers.rails_blob_url(variant)
       new_image = ActionController::Base.helpers.image_tag(new_image_url, alt: img["alt"])
 
       img.replace(new_image)
