@@ -1,5 +1,6 @@
 input,
-textarea {
+textarea,
+button {
   font-size: inherit;
 }
 
