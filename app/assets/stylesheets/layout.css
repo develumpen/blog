@@ -24,6 +24,13 @@ body {
 
 .page-header {
   flex-basis: 100%;
+
+  @media (min-width: 992px) {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+  }
 }
 
 .content {
@@ -48,4 +55,16 @@ section {
 
 .text-center {
   text-align: center;
+}
+
+.menu {
+  display: inline-flex;
+  gap: .5rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menu-admin {
+  flex-basis: 100%;
 }

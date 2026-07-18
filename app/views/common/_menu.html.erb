@@ -1,16 +1,24 @@
-<% if authenticated? && !request.path.starts_with?("/admin") %>
-  <div>
-    <%= link_to "Admin", admin_path %>
-  </div>
+<% if !request.path.starts_with?("/admin") %>
+  <ul class="menu">
+    <% if authenticated? %>
+      <li><%= link_to "Admin", admin_path %></li>
+    <% end %>
+
+    <% if menu_items.any? %>
+      <% menu_items.each do |item| %>
+        <li><%= link_to item.entry.title, entry_slug_path(item.entry.slug) %></li>
+      <% end %>
+    <% end %>
+  </ul>
 <% end %>
 
 <% if request.path.starts_with?("/admin") %>
-  <div>
-    <%= link_to "Entradas", admin_entries_path %>
-    <%= link_to "Comentarios", admin_comments_path %>
-    <%= link_to "Páginas", admin_pages_path %>
-    <%= link_to "Etiquetas", admin_tags_path %>
-    <%= link_to "Media", admin_media_items_path %>
-  </div>
+  <ul class="menu menu-admin">
+    <li><%= link_to "Entradas", admin_entries_path %></li>
+    <li><%= link_to "Comentarios", admin_comments_path %></li>
+    <li><%= link_to "Páginas", admin_pages_path %></li>
+    <li><%= link_to "Etiquetas", admin_tags_path %></li>
+    <li><%= link_to "Media", admin_media_items_path %></li>
+  </ul>
 <% end %>
 

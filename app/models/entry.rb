@@ -2,6 +2,7 @@ class Entry < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :taggings, dependent: :destroy
   has_many :tags, through: :taggings
+  has_many :menu_items
 
   before_validation :set_slug
   before_validation :set_body_html
