@@ -1,6 +1,6 @@
 <% content_for :title, t(".title") %>
 
-<p><%= link_to "Nueva entrada", new_admin_entry_path %></p>
+<p><%= link_to "Nueva página", new_admin_page_path %></p>
 
 <table id="entries" class="table">
   <thead>
@@ -21,7 +21,7 @@
             -
           <% end %>
         </td>
-        <td><%= link_to entry.title, edit_admin_entry_path(entry) %></td>
+        <td><%= link_to entry.title, edit_admin_page_path(entry) %></td>
         <td><%= entry.status %></td>
         <td class="text-center"><%= entry.comments.count %></td>
       </tr>

@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     resources :comments, only: %i[ index ]
     resources :entries, only: %i[ index new edit create update destroy ]
     resources :media_items, only: %i[ index create destroy ]
+    resources :pages, only: %i[ index new edit create update destroy ]
     resources :tags
   end
 

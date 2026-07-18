@@ -5,6 +5,7 @@ class EntriesController < ApplicationController
 
   def index
     @entries = Entry
+                .where(unlisted: false)
                 .published
                 .filter_by_tags(params[:tags])
                 .order(published_at: :desc)
@@ -19,7 +20,8 @@ class EntriesController < ApplicationController
 
   private
     def set_entry
-      @entry = Entry.find_by_slug!(params[:slug])
+      scope = authenticated? ? Entry : Entry.published
+      @entry = scope.find_by_slug!(params[:slug])
     end
 
     def current_page

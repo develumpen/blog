@@ -1,23 +1,23 @@
 module Admin
   class EntriesController < AdminController
-    before_action :set_entry_from_id, only: %i[ edit update destroy ]
+    before_action :set_entry, only: %i[ edit update destroy ]
 
     def index
-      @entries = Entry.order(published_at: :desc)
+      @entries = scope.order(published_at: :desc)
     end
 
     def show
     end
 
     def new
-      @entry = Entry.new
+      @entry = scope.new(default_attributes)
     end
 
     def edit
     end
 
     def create
-      @entry = Entry.new(entry_params)
+      @entry = scope.new(entry_params.merge(default_attributes))
 
       if @entry.save
         redirect_to edit_admin_entry_path(@entry), notice: "Entry was successfully created."
@@ -40,12 +40,20 @@ module Admin
     end
 
     private
-      def set_entry_from_id
-        @entry = Entry.find(params.expect(:id))
+      def resource_key
+        :entry
       end
 
-      def set_entry_from_slug
-        @entry = Entry.find_by_slug(params[:slug])
+      def scope
+        Entry.where(unlisted: false)
+      end
+
+      def default_attributes
+        { unlisted: false }
+      end
+
+      def set_entry
+        @entry = scope.find(params.expect(:id))
       end
 
       def entry_params

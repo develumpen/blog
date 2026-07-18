@@ -1,0 +1,15 @@
+<% content_for :title, t(".title") %>
+
+<h1><%= content_for :title %></h1>
+
+<%= render "form", entry: @entry, url: admin_page_path(@entry) %>
+
+<br />
+
+<%= button_to "Eliminar Página", admin_page_path(@entry), method: :delete, data: { turbo_confirm: "Are you sure?" } %>
+
+<br />
+
+<div>
+  <%= link_to "Ver Página", entry_slug_path(@entry.slug) %>
+</div>

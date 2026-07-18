@@ -1,17 +1,21 @@
-<div id="<%= dom_id entry %>" class="entry">
+<%= tag.div id: dom_id(entry), class: class_names("entry", { "draft": entry.draft }) do %>
   <h2><%= link_to_unless_current entry.title, entry_slug_path(entry.slug) %></h2>
-  <div>
-    <small>
-      <%= l entry.published_at, format: :long %>
-      <% if entry.comments.persisted.any? %>
-        —
-        <%= pluralize(entry.comments.persisted.count, "comentario", plural: "comentarios") %>
-      <% end %>
-      <% if entry.tags.any? %>
-        —
-        <%= safe_join(entry.tags.map { |t| link_to(t.name, entries_path(tags: [t.name]), class: "tag") }, ", ") %>
-      <% end %>
-    </small>
-  </div>
+  
+  <% unless entry.unlisted %>
+    <div>
+      <small>
+        <%= l entry.published_at, format: :long %>
+        <% if entry.comments.persisted.any? %>
+          —
+          <%= pluralize(entry.comments.persisted.count, "comentario", plural: "comentarios") %>
+        <% end %>
+        <% if entry.tags.any? %>
+          —
+          <%= safe_join(entry.tags.map { |t| link_to(t.name, entries_path(tags: [t.name]), class: "tag") }, ", ") %>
+        <% end %>
+      </small>
+    </div>
+  <% end %>
+
   <%= sanitize entry.body_html %>
-</div>
+<% end %>

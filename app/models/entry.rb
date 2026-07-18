@@ -8,7 +8,6 @@ class Entry < ApplicationRecord
 
   validates :title, presence: true
 
-  scope :published, -> { where(draft: false).where("published_at < ?", Time.current) }
 
   scope :filter_by_tags, ->(tags) {
     tag_names = Array.wrap(tags)
@@ -20,6 +19,9 @@ class Entry < ApplicationRecord
       .group(:id)
       .having("COUNT(DISTINCT tags.id) = ?", tag_names.size)
   }
+  scope :listed, -> { where(unlisted: false) }
+  scope :published, -> { where(draft: false).where("published_at < ?", Time.current) }
+  scope :unlisted, -> { where(unlisted: true) }
 
   def status
     return "draft" if draft

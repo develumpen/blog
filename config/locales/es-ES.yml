@@ -1,0 +1,16 @@
+es-ES:
+  admin:
+    entries:
+      index:
+        title: Entradas
+      new:
+        title: Nueva entrada
+      edit:
+        title: Editar entrada
+    pages:
+      index:
+        title: Páginas
+      new:
+        title: Nueva página
+      edit:
+        title: Editar página
