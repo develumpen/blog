@@ -2,13 +2,13 @@ class Entry < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :taggings, dependent: :destroy
   has_many :tags, through: :taggings
+  has_many :menu_items
 
   before_validation :set_slug
   before_validation :set_body_html
 
   validates :title, presence: true
 
-  scope :published, -> { where(draft: false).where("published_at < ?", Time.current) }
 
   scope :filter_by_tags, ->(tags) {
     tag_names = Array.wrap(tags)
@@ -20,6 +20,9 @@ class Entry < ApplicationRecord
       .group(:id)
       .having("COUNT(DISTINCT tags.id) = ?", tag_names.size)
   }
+  scope :listed, -> { where(unlisted: false) }
+  scope :published, -> { where(draft: false).where("published_at < ?", Time.current) }
+  scope :unlisted, -> { where(unlisted: true) }
 
   def status
     return "draft" if draft

@@ -1,15 +1,15 @@
-<% content_for :title, "Editing entry" %>
+<% content_for :title, t(".title") %>
 
-<h1>Editing entry</h1>
+<h1><%= content_for :title %></h1>
 
-<%= render "form", entry: @entry %>
+<%= render "form", entry: @entry, url: admin_entry_path(@entry) %>
 
 <br />
 
-<%= button_to "Destroy Entry", admin_entry_path(@entry), method: :delete, data: { turbo_confirm: "Are you sure?" } %>
+<%= button_to "Eliminar Entrada", admin_entry_path(@entry), method: :delete, data: { turbo_confirm: "Are you sure?" } %>
 
 <br />
 
 <div>
-  <%= link_to "Show this entry", entry_slug_path(@entry.slug) %>
+  <%= link_to "Ver entrada", entry_slug_path(@entry.slug) %>
 </div>

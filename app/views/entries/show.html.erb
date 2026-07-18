@@ -2,18 +2,20 @@
   <%= render @entry %>
 </section>
 
-<section>
-  <h2 class="title">Comentarios</h2>
+<% unless @entry.unlisted %>
+  <section>
+    <h2 class="title">Comentarios</h2>
 
-  <% unless @comments.any? %>
-    <p>Nadie ha comentado nada por ahora.</p>
-  <% end %>
+    <% unless @comments.any? %>
+      <p>Nadie ha comentado nada por ahora.</p>
+    <% end %>
 
-  <%= render @comments %>
-</section>
+    <%= render @comments %>
+  </section>
 
-<section>
-  <h2 class="title">Deja un comentario</h2>
+  <section>
+    <h2 class="title">Deja un comentario</h2>
 
-  <%= render "comments/form" %>
-</section>
+    <%= render "comments/form" %>
+  </section>
+<% end %>

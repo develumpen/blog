@@ -21,7 +21,7 @@ class Admin::EntriesTest < ApplicationSystemTestCase
     check "Draft" if @entry.draft
     fill_in "Published at", with: @entry.published_at
     fill_in "Title", with: @entry.title
-    click_on "Create Entry"
+    click_on "Crear Entry"
 
     assert_text "Entry was successfully created"
   end
@@ -34,7 +34,7 @@ class Admin::EntriesTest < ApplicationSystemTestCase
     fill_in "Body markdown", with: @entry.body_markdown
     check "Draft" if @entry.draft
     fill_in "Title", with: @entry.title
-    click_on "Update Entry"
+    click_on "Actualizar Entry"
 
     assert_text "Entry was successfully updated"
   end
@@ -44,7 +44,7 @@ class Admin::EntriesTest < ApplicationSystemTestCase
 
     visit edit_admin_entry_url(@entry)
     accept_confirm do
-      click_on "Destroy Entry", match: :first
+      click_on "Eliminar Entrada", match: :first
     end
 
     assert_text "Entry was successfully destroyed"

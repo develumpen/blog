@@ -12,7 +12,7 @@ class CommentsTest < ApplicationSystemTestCase
     visit entry_slug_url(@entry.slug)
 
     fill_in "Comment", with: "This is a comment."
-    click_on "Create Comment"
+    click_on "Crear Comment"
 
     assert_selector ".comment", count: 2
     assert_selector ".comment-author > a", text: @user.username
@@ -23,7 +23,7 @@ class CommentsTest < ApplicationSystemTestCase
 
     fill_in "Name", with: "Comentator"
     fill_in "Comment", with: "This is a comment."
-    click_on "Create Comment"
+    click_on "Crear Comment"
 
     assert_selector ".comment", count: 2
     assert_selector ".comment-author > span", text: "Comentator"
@@ -35,7 +35,7 @@ class CommentsTest < ApplicationSystemTestCase
     fill_in "Name", with: "Comentator"
     fill_in "Url", with: "http://my-url.com"
     fill_in "Comment", with: "This is a comment."
-    click_on "Create Comment"
+    click_on "Crear Comment"
 
     assert_selector ".comment", count: 2
     assert_selector ".comment-author > a", text: "Comentator"
@@ -45,7 +45,7 @@ class CommentsTest < ApplicationSystemTestCase
     visit entry_slug_url(@entry.slug)
 
     fill_in "Comment", with: "This is a comment"
-    click_on "Create Comment"
+    click_on "Crear Comment"
 
     assert_selector ".comment", count: 2
     assert_selector ".comment-author > span", text: "anónimo"
@@ -54,8 +54,8 @@ class CommentsTest < ApplicationSystemTestCase
   test "should show error if comment is empty" do
     visit entry_slug_url(@entry.slug)
 
-    click_on "Create Comment"
+    click_on "Crear Comment"
 
-    assert_selector "li", text: "Comment can't be blank"
+    assert_selector "li", text: "Comment no puede estar en blanco"
   end
 end

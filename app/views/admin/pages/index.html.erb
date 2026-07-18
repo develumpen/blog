@@ -1,0 +1,20 @@
+<% content_for :title, t(".title") %>
+
+<p><%= link_to "Nueva página", new_admin_page_path %></p>
+
+<table id="entries" class="table">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @entries.each do |entry| %>
+      <tr>
+        <td><%= link_to entry.title, edit_admin_page_path(entry) %></td>
+        <td><%= entry.status %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
