@@ -13,8 +13,16 @@ module Admin
         { unlisted: true }
       end
 
-      def edit_redirect_path(entry)
-        edit_admin_page_path(@entry)
+      def edit_redirect(entry)
+        edit_admin_page_path(entry)
+      end
+
+      def update_redirect(entry)
+        admin_page_path(entry)
+      end
+
+      def destroy_redirect
+        admin_pages_path
       end
   end
 end
